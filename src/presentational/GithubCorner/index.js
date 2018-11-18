@@ -7,7 +7,7 @@ import './index.css';
 
 const GithubCorner = () => (
   <a
-    href="https://github.com/devgru/palette16"
+    href="https://github.com/devgru/tutorial16"
     className="GithubCorner"
     aria-label="Исходники на GitHub"
   >
