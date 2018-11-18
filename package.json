@@ -1,5 +1,5 @@
 {
-  "name": "palette16",
+  "name": "tutorial16",
   "version": "0.1.0",
   "private": true,
   "author": "Dmitriy Semyushkin <git@devg.ru> (https://devg.ru)",
@@ -72,5 +72,5 @@
       "pre-push": "yarn deploy"
     }
   },
-  "homepage": "http://devgru.github.io/palette16"
+  "homepage": "http://devgru.github.io/tutorial16"
 }
