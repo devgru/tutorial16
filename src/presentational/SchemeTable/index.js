@@ -4,7 +4,7 @@ import SchemeBlock from '../SchemeBlock';
 import './index.css';
 
 export default ({ schemes, onLoadScheme }) => (
-  <div className="SchemeBar">
+  <div className="SchemeTable">
     {Object.keys(schemes).map(key => (
       <SchemeBlock
         key={key}

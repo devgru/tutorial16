@@ -1,3 +1,3 @@
-# palette16
+# tutorial16
 
-Web app to build color palettes
+Web app to analyse and create color palettes

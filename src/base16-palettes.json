@@ -1,6 +1,6 @@
 {
-  "tutorial": {
-    "scheme": "Tutorial",
+  "tutorial-light": {
+    "scheme": "Tutorial Light",
     "author": "Dmitriy Semyushkin (https://devg.ru)",
     "base00": "ffffff",
     "base01": "eeeeee",
@@ -10,6 +10,26 @@
     "base05": "777777",
     "base06": "111111",
     "base07": "000000",
+    "base08": "ff0000",
+    "base09": "ff9900",
+    "base0A": "ffff00",
+    "base0B": "00ff00",
+    "base0C": "00ffcc",
+    "base0D": "009999",
+    "base0E": "0033ff",
+    "base0F": "ff0066"
+  },
+  "tutorial-dark": {
+    "scheme": "Tutorial Dark",
+    "author": "Dmitriy Semyushkin (https://devg.ru)",
+    "base00": "000000",
+    "base01": "111111",
+    "base02": "777777",
+    "base03": "888888",
+    "base04": "999999",
+    "base05": "aaaaaa",
+    "base06": "eeeeee",
+    "base07": "ffffff",
     "base08": "ff0000",
     "base09": "ff9900",
     "base0A": "ffff00",
@@ -481,8 +501,7 @@
   },
   "circus": {
     "scheme": "Circus",
-    "author":
-      "Stephan Boyer (https://github.com/stepchowfun) and Esther Wang (https://github.com/ewang12)",
+    "author": "Stephan Boyer (https://github.com/stepchowfun) and Esther Wang (https://github.com/ewang12)",
     "base00": "191919",
     "base01": "202020",
     "base02": "303030",
@@ -702,8 +721,7 @@
   },
   "dracula": {
     "scheme": "Dracula",
-    "author":
-      "Mike Barkmin (http://github.com/mikebarkmin) based on Dracula Theme (http://github.com/dracula)",
+    "author": "Mike Barkmin (http://github.com/mikebarkmin) based on Dracula Theme (http://github.com/dracula)",
     "base00": "282936",
     "base01": "3a3c4e",
     "base02": "4d4f68",
@@ -743,8 +761,7 @@
   },
   "gruvbox-dark-hard": {
     "scheme": "Gruvbox dark, hard",
-    "author":
-      "Dawid Kurek (dawikur@gmail.com), morhetz (https://github.com/morhetz/gruvbox)",
+    "author": "Dawid Kurek (dawikur@gmail.com), morhetz (https://github.com/morhetz/gruvbox)",
     "base00": "1d2021",
     "base01": "3c3836",
     "base02": "504945",
@@ -764,8 +781,7 @@
   },
   "gruvbox-dark-medium": {
     "scheme": "Gruvbox dark, medium",
-    "author":
-      "Dawid Kurek (dawikur@gmail.com), morhetz (https://github.com/morhetz/gruvbox)",
+    "author": "Dawid Kurek (dawikur@gmail.com), morhetz (https://github.com/morhetz/gruvbox)",
     "base00": "282828",
     "base01": "3c3836",
     "base02": "504945",
@@ -785,8 +801,7 @@
   },
   "gruvbox-dark-pale": {
     "scheme": "Gruvbox dark, pale",
-    "author":
-      "Dawid Kurek (dawikur@gmail.com), morhetz (https://github.com/morhetz/gruvbox)",
+    "author": "Dawid Kurek (dawikur@gmail.com), morhetz (https://github.com/morhetz/gruvbox)",
     "base00": "262626",
     "base01": "3a3a3a",
     "base02": "4e4e4e",
@@ -806,8 +821,7 @@
   },
   "gruvbox-dark-soft": {
     "scheme": "Gruvbox dark, soft",
-    "author":
-      "Dawid Kurek (dawikur@gmail.com), morhetz (https://github.com/morhetz/gruvbox)",
+    "author": "Dawid Kurek (dawikur@gmail.com), morhetz (https://github.com/morhetz/gruvbox)",
     "base00": "32302f",
     "base01": "3c3836",
     "base02": "504945",
@@ -827,8 +841,7 @@
   },
   "gruvbox-light-hard": {
     "scheme": "Gruvbox light, hard",
-    "author":
-      "Dawid Kurek (dawikur@gmail.com), morhetz (https://github.com/morhetz/gruvbox)",
+    "author": "Dawid Kurek (dawikur@gmail.com), morhetz (https://github.com/morhetz/gruvbox)",
     "base00": "f9f5d7",
     "base01": "ebdbb2",
     "base02": "d5c4a1",
@@ -848,8 +861,7 @@
   },
   "gruvbox-light-medium": {
     "scheme": "Gruvbox light, medium",
-    "author":
-      "Dawid Kurek (dawikur@gmail.com), morhetz (https://github.com/morhetz/gruvbox)",
+    "author": "Dawid Kurek (dawikur@gmail.com), morhetz (https://github.com/morhetz/gruvbox)",
     "base00": "fbf1c7",
     "base01": "ebdbb2",
     "base02": "d5c4a1",
@@ -869,8 +881,7 @@
   },
   "gruvbox-light-soft": {
     "scheme": "Gruvbox light, soft",
-    "author":
-      "Dawid Kurek (dawikur@gmail.com), morhetz (https://github.com/morhetz/gruvbox)",
+    "author": "Dawid Kurek (dawikur@gmail.com), morhetz (https://github.com/morhetz/gruvbox)",
     "base00": "f2e5bc",
     "base01": "ebdbb2",
     "base02": "d5c4a1",
@@ -1130,8 +1141,7 @@
   },
   "rebecca": {
     "scheme": "Rebecca",
-    "author":
-      "Victor Borja (http://github.com/vic) based on Rebecca Theme (http://github.com/vic/rebecca-theme)",
+    "author": "Victor Borja (http://github.com/vic) based on Rebecca Theme (http://github.com/vic/rebecca-theme)",
     "base00": "292a44",
     "base01": "663399",
     "base02": "383a62",

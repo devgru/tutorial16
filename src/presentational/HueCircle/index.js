@@ -5,7 +5,6 @@ import { range } from 'd3-array';
 import Tick from './Tick';
 
 import './index.css';
-import Swatch from '../Swatch';
 
 const BIG_TICK_SIZE = 4;
 const TICK_SIZE = 2;

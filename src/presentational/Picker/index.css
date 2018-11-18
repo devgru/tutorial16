@@ -1,0 +1,21 @@
+.Picker {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.Picker-canvas {
+  margin: 5px;
+}
+.Picker-svg * {
+  pointer-events: none;
+}
+.Picker-left {
+  clear: left;
+  float: left;
+}
+.Picker-right {
+  float: left;
+}

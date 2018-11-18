@@ -1,7 +1,5 @@
 import React from 'react';
 
-import toHex from './toHex';
-
 const cubeSpace = 4;
 const cubeRatio = 2;
 const pointSize = cubeSpace / cubeRatio;
@@ -19,7 +17,7 @@ export default function createPointMesh(
   a = 1,
   plane = null
 ) {
-  const colorHex = toHex(color);
+  const colorHex = color.hex();
   const point = colorToPoint(color);
   if (plane) {
     projectToPlane(point, plane);

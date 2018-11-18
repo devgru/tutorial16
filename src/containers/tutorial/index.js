@@ -4,7 +4,7 @@ import TutorialContainer from '../tutorial-container';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { loadBase16Palette } from '../../modules/currentPalette';
+import { loadBase16Palette, setColor } from '../../modules/currentPalette';
 
 import InlineSwatch from '../../presentational/InlineSwatch';
 import GithubCorner from '../../presentational/GithubCorner';
@@ -19,6 +19,7 @@ import CodeExample from '../../presentational/CodeExample';
 import HueCircle from '../../presentational/HueCircle';
 import SchemeBar from '../../presentational/SchemeBar';
 import Delta from '../../presentational/Delta';
+import Picker from '../../presentational/Picker';
 
 import delta from '../../utils/delta';
 
@@ -52,7 +53,15 @@ class Tutorial extends TutorialContainer {
   }
 
   render() {
-    const { base, accents, all, palettes, loadBase16Palette } = this.props;
+    const {
+      base,
+      accents,
+      all,
+      palettes,
+      loadBase16Palette,
+      selectColor,
+      modifyCurrentColor,
+    } = this.props;
     if (!base) {
       return null;
     }
@@ -77,7 +86,7 @@ class Tutorial extends TutorialContainer {
       'solarized-light',
       'solarized-dark',
       'solarflare',
-      'tutorial',
+      'tutorial-light',
     ].reduce(
       (hash, key) => ({
         ...hash,
@@ -85,6 +94,10 @@ class Tutorial extends TutorialContainer {
       }),
       {}
     );
+
+    const colorPicked = index => color => {
+      this.props.setColor(index, color);
+    };
 
     return (
       <div className="Tutorial">
@@ -103,8 +116,8 @@ class Tutorial extends TutorialContainer {
               Простейший интерактивный элемент — свотч, цветовая плашка:{' '}
               <InlineSwatch color="#00FF55" />. Свотч можно выделить курсором
               или пальцем, при этом во всплывающем блоке можно будет узнать
-              больше о цвете: наиболее подходящее название, координаты в
-              пространствах RGB и HCL, оценку характеристик этого цвета.
+              больше о цвете: название, координаты в пространствах RGB и HCL,
+              оценку некоторых характеристик.
             </p>
             <p>
               Для описания различия пар цветов используется такое представление:{' '}
@@ -153,7 +166,8 @@ class Tutorial extends TutorialContainer {
               создал набор схем{' '}
               <a href="http://atelierbram.github.io/syntax-highlighting/atelier-schemes/">
                 Atelier
-              </a>.
+              </a>
+              .
             </p>
             <p>
               В 2016{' '}
@@ -166,7 +180,8 @@ class Tutorial extends TutorialContainer {
               создала тему{' '}
               <a href="https://github.com/sdras/night-owl-vscode-theme">
                 Night Owl
-              </a>, использующую одноименную цветовую схему.
+              </a>
+              , использующую одноименную цветовую схему.
             </p>
           </div>
         </InversePage>
@@ -195,27 +210,29 @@ class Tutorial extends TutorialContainer {
               трёх групп.
             </p>
             <p>
-              <InlineSwatch color={base[0]} /> и{' '}
-              <InlineSwatch color={base[1]} /> — фоны, основной и альтернативный
-              (например, для выделения текущей строки в редакторе).
+              Фоны: <InlineSwatch color={base[0]} />
+              основной и <InlineSwatch color={base[1]} />
+              альтернативный (например, для выделения текущей строки в
+              редакторе).
             </p>
             <p>
-              <InlineSwatch color={base[2]} />
+              Промежуточные цвета: <InlineSwatch color={base[2]} />
               <InlineSwatch color={base[3]} />
               <InlineSwatch color={base[4]} />
-              <InlineSwatch color={base[5]} /> — промежуточные цвета. Ими рисуют
-              «приглушённый» текст (номера строк, ключевые слова языка
-              программирования), линейки и границы.
+              <InlineSwatch color={base[5]} />. Ими рисуют второстепенный текст
+              (номера строк, ключевые слова языка программирования), линейки и
+              границы.
             </p>
             <p>
-              <InlineSwatch color={base[6]} /> и{' '}
-              <InlineSwatch color={base[7]} /> — цвета текста.
+              Цвета текста: <InlineSwatch color={base[6]} />
+              приглушённый и <InlineSwatch color={base[7]} />
+              основной.
             </p>
             <p>
               В большинстве base16-совместимых схем основную последовательность
               можно развернуть, поменяв порядок цветов. При переносе цветов в
-              файлы, импортируемые в настройки программы, такие схемы публикуют
-              в двух версиях, светлой и тёмной. В этом документе я иногда
+              файлы, импортируемые в настройки программ, такие схемы публикуют в
+              двух версиях, светлой и тёмной. В этом документе я иногда
               «разворачиваю» схему, чтобы вы увидели как она работает в
               инверсии.
             </p>
@@ -246,8 +263,8 @@ class Tutorial extends TutorialContainer {
             />
             <span className="Tutorial-aside">
               О цветовых моделях и их изображении в трёхмерном пространстве
-              можно прочитать на{' '}
-              <a href="#/tutorial/color-spaces">отдельной странице</a>.
+              можно прочитать на <a href="#/color-spaces">отдельной странице</a>
+              .
             </span>
           </div>
           <div className="Tutorial-text">
@@ -330,7 +347,8 @@ class Tutorial extends TutorialContainer {
               остальных, он чаще всего попадает в т.н.{' '}
               <a href="https://en.wikipedia.org/wiki/Line_of_purples">
                 пурпурную линию
-              </a>, группу цветов между красным и фиолетовым. Их отличие от
+              </a>
+              , группу цветов между красным и фиолетовым. Их отличие от
               спектральных цветов в том, что такой цвет не может быть
               монохроматичным, его нельзя получить излучением одного лазера.
               Такой цвет нельзя назвать ни тёплым ни холодным, его оттенок будет
@@ -378,7 +396,8 @@ class Tutorial extends TutorialContainer {
             формула 2000 года.
           </p>
           <p>
-            Примеры результатов её использования:<br />
+            Примеры результатов её использования:
+            <br />
             <Delta c1="#FFF" c2="#00F" />
             <br />
             <Delta c1="#FFF" c2="#000" />
@@ -411,7 +430,22 @@ class Tutorial extends TutorialContainer {
           </p>
           <Matrix colors={all} fn={deltaE} />
         </div>
-        <SchemeBar schemes={selectedPalettes} loadScheme={loadBase16Palette} />
+        <InversePage>
+          <div className="Tutorial-text">
+            <Header hash="select-base-colors">
+              Выбор цветов основной последовательности
+            </Header>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+          </div>
+        </InversePage>
+        <SchemeBar
+          schemes={selectedPalettes}
+          onLoadScheme={loadBase16Palette}
+        />
       </div>
     );
   }
@@ -454,6 +488,9 @@ const mapStateToProps = ({ currentPalette, paletteList }) => {
 };
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ loadBase16Palette }, dispatch);
+  bindActionCreators({ loadBase16Palette, setColor }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(Tutorial);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Tutorial);

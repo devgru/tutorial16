@@ -1,6 +1,5 @@
 import React from 'react';
 
-import toHex from './toHex';
 import { Matrix4, Vector3, Quaternion, Object3D } from 'three';
 
 const getQuaternion = normal => {
@@ -22,7 +21,7 @@ export default function createPlaneMesh(plane) {
   return (
     <line key="plane" position={centroid} quaternion={getQuaternion(normal)}>
       <circleGeometry radius={50} />
-      <lineBasicMaterial color={toHex(color)} />
+      <lineBasicMaterial color={color.hex()} />
     </line>
   );
 }

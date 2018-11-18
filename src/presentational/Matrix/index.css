@@ -1,6 +1,13 @@
+.Matrix {
+  overflow: hidden;
+  clear: left;
+}
+
 .MatrixRow {
   margin: 0;
   padding: 0;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .MatrixCell {

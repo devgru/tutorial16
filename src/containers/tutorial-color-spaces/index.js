@@ -135,10 +135,12 @@ class Tutorial extends TutorialContainer {
               <InlineSwatch color="#0F0" /> <InlineSwatch color="#0FF" />{' '}
               <InlineSwatch color="#00F" /> <InlineSwatch color="#F0F" />. Для
               сравнения, в RGB эти цвета находятся в разных углах кубика, имея
-              условную яркость (простую сумму значений компонент) 33% (<InlineSwatch color="#F00" />,{' '}
-              <InlineSwatch color="#0F0" /> и <InlineSwatch color="#00F" />) и
-              66% (<InlineSwatch color="#FF0" />, <InlineSwatch color="#0FF" />{' '}
-              и <InlineSwatch color="#F0F" />).
+              условную яркость (простую сумму значений компонент) 33% (
+              <InlineSwatch color="#F00" />, <InlineSwatch color="#0F0" /> и{' '}
+              <InlineSwatch color="#00F" />) и 66% (
+              <InlineSwatch color="#FF0" />, <InlineSwatch color="#0FF" /> и{' '}
+              <InlineSwatch color="#F0F" />
+              ).
             </p>
             <p>
               Разумеется, это нонсенс. Яркость <InlineSwatch color="#FF0" /> и{' '}
@@ -195,8 +197,7 @@ class Tutorial extends TutorialContainer {
             </p>
             <p>
               Теперь, когда мы немного познакомились с цветовыми пространствами
-              — пора <a href="#/tutorial">вернуться</a> к созданию цветовых
-              схем.
+              — пора <a href="#/">вернуться</a> к созданию цветовых схем.
             </p>
           </div>
         </div>
@@ -242,4 +243,7 @@ const mapStateToProps = ({ currentPalette }) => {
 const mapDispatchToProps = dispatch =>
   bindActionCreators({ loadBase16Palette }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(Tutorial);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Tutorial);
