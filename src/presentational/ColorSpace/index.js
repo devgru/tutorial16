@@ -115,7 +115,7 @@ class ColorSpace extends Component {
             far={10000}
             position={this.cameraPosition}
           />
-          {createPlaneMesh(plane, 'red')}
+          {createPlaneMesh(plane)}
           {gridPoints}
           {uniqPoints}
           {uniqProjectedPoints}
