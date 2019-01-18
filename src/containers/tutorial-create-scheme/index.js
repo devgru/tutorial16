@@ -5,7 +5,6 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import isEqual from 'lodash.isequal';
 import { scaleLinear } from 'd3-scale';
-import { range } from 'd3-array';
 import { interpolateHcl } from 'd3-interpolate';
 
 import { loadBase16Palette, setColor } from '../../modules/currentPalette';
@@ -13,8 +12,8 @@ import generateAccents from '../../utils/generateAccents';
 
 import Swatch from '../../presentational/Swatch';
 import GithubCorner from '../../presentational/GithubCorner';
-import Header from '../../presentational/TutorialHeader';
-import InversePage from '../../presentational/InversePage';
+import Header from '../../presentational/Header';
+import Page from '../../presentational/Page';
 import SchemeTable from '../../presentational/SchemeTable';
 import Picker from '../../presentational/Picker';
 import ColorSpace from '../../presentational/ColorSpace';
@@ -128,7 +127,7 @@ class TutorialCreateScheme extends TutorialContainer {
     return (
       <div className="Tutorial">
         <GithubCorner />
-        <div className="Tutorial-page">
+        <Page>
           <div className="Tutorial-text">
             <Header hash="start">Выбор основы</Header>
             <p>
@@ -139,16 +138,16 @@ class TutorialCreateScheme extends TutorialContainer {
               контрастные и простые схемы.
             </p>
           </div>
-        </div>
-        <div className="Tutorial-page">
+        </Page>
+        <Page>
           <div className="Tutorial-text">
             <SchemeTable
               schemes={selectedPalettes}
               onLoadScheme={loadBase16Palette}
             />
           </div>
-        </div>
-        <InversePage>
+        </Page>
+        <Page inverse>
           <div className="Tutorial-text">
             <Header hash="select-base-colors">
               Выбор цветов основной последовательности
@@ -206,7 +205,7 @@ class TutorialCreateScheme extends TutorialContainer {
             <br />
             <br />
           </div>
-        </InversePage>
+        </Page>
       </div>
     );
   }

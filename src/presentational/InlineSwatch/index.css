@@ -6,6 +6,7 @@
   border: 1px solid;
   border-radius: 0.25em;
   margin: 0 1px -0.05em 0;
+  outline: none;
 }
 
 .InlineSwatch-hover {
@@ -19,4 +20,8 @@
 .InlineSwatch:hover .InlineSwatch-hover,
 .InlineSwatch:focus .InlineSwatch-hover {
   display: block;
+}
+
+.InlineSwatch .Swatch {
+  user-select: none;
 }

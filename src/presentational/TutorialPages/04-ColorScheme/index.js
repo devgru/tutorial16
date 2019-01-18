@@ -1,8 +1,9 @@
 import React from 'react';
-import Header from '../../TutorialHeader';
+import Header from '../../Header';
+import Page from '../../Page';
 
 export default () => (
-  <div className="Tutorial-page">
+  <Page>
     <div className="Tutorial-text">
       <Header hash="color-scheme">Цветовая схема</Header>
       <p>
@@ -22,5 +23,5 @@ export default () => (
         любимую сразу после установки программ.
       </p>
     </div>
-  </div>
+  </Page>
 );

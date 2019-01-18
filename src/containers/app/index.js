@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import Tutorial from '../tutorial';
 import TutorialColorSpaces from '../tutorial-color-spaces';
+import TutorialColorSchemes from '../tutorial-color-schemes';
 import TutorialCreateScheme from '../tutorial-create-scheme';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -17,6 +18,11 @@ class App extends Component {
           exact={true}
           path="/color-spaces"
           component={TutorialColorSpaces}
+        />
+        <Route
+          exact={true}
+          path="/color-schemes"
+          component={TutorialColorSchemes}
         />
         <Route
           exact={true}

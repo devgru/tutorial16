@@ -1,14 +1,14 @@
-.TutorialHeader {
+.Header {
   position: relative;
   margin: 2em 0 0.25em -2em;
   padding-left: 2em;
 }
 
-.TutorialHeader:hover .TutorialHeader-hash {
+.Header:hover .Header-hash {
   display: inline;
 }
 
-.TutorialHeader-hash {
+.Header-hash {
   position: absolute;
   text-decoration: none;
   left: 1em;

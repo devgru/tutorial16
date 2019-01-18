@@ -151,7 +151,11 @@ ColorSpace.contextTypes = {
 };
 
 ColorSpace.propTypes = {
-  colors: PropTypes.arrayOf(PropTypes.string).isRequired,
+  colors: PropTypes.arrayOf(PropTypes.string),
+};
+
+ColorSpace.defaultProps = {
+  colors: [],
 };
 
 export default ColorSpace;

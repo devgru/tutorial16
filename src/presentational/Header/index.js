@@ -7,8 +7,8 @@ export default ({ children, hash }) => {
   const page = parts[1];
 
   return (
-    <h2 className="TutorialHeader">
-      <a className="TutorialHeader-hash" href={'#' + page + '#' + hash}>
+    <h2 className="Header">
+      <a className="Header-hash" href={'#' + page + '#' + hash}>
         #
       </a>
       <a id={hash}>{children}</a>

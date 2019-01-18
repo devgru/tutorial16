@@ -11,10 +11,14 @@ import { loadBase16Palette } from '../../modules/currentPalette';
 import InlineSwatch from '../../presentational/InlineSwatch';
 import GithubCorner from '../../presentational/GithubCorner';
 import ColorSpace from '../../presentational/ColorSpace';
+import Favicon from '../../presentational/Favicon';
+import Header from '../../presentational/Header';
+import Page from '../../presentational/Page';
 
 import '../tutorial/index.css';
+import SchemeBar from '../../presentational/SchemeBar';
 
-class Tutorial extends TutorialContainer {
+class TutorialColorSpaces extends TutorialContainer {
   constructor(props) {
     super(props);
     props.loadBase16Palette('solarized-light');
@@ -41,20 +45,35 @@ class Tutorial extends TutorialContainer {
   }
 
   render() {
-    const { all } = this.props;
+    const { all, palettes } = this.props;
     if (!all) {
       return null;
     }
 
     const background = all[0];
+    const foreground = all[7];
+
+    const selectedPalettes = [
+      'solarized-light',
+      'solarized-dark',
+      'solarflare',
+      'tutorial-light',
+    ].reduce(
+      (hash, key) => ({
+        ...hash,
+        [key]: palettes[key],
+      }),
+      {}
+    );
 
     return (
       <div className="Tutorial">
+        <Favicon background={background} foreground={foreground} />
         <GithubCorner />
-        <div className="Tutorial-page">
+        <Page>
           <div className="Tutorial-text">
-            <h1>Цветовые пространства</h1>
-            <h2>RGB</h2>
+            <h1>Цветовые модели</h1>
+            <Header hash="rgb">RGB</Header>
             <p>
               Цвета хранятся и передаются в формате RGB — по байту на каждую из
               цветовых компонент: красную, зелёную и синию, 256 значений от 0 до
@@ -77,10 +96,14 @@ class Tutorial extends TutorialContainer {
               включить каждый из суб-пикселей, но для человека это не лучший
               формат описания цвета. В RGB трудно оценить характеристики цвета —
               яркость, насыщенность, тон. Например,{' '}
-              <InlineSwatch color="#080" /> #080 будет куда ярче чем #008{' '}
+              <InlineSwatch color="#080" /> #008800 будет куда ярче чем #000088{' '}
               <InlineSwatch color="#008" />, хотя цифры использованы идентичные.
             </p>
-            <h2>Производные модели</h2>
+          </div>
+        </Page>
+        <Page inverse>
+          <div className="Tutorial-text">
+            <Header hash="derived">Производные модели</Header>
             <p>
               Производные от RGB модели HSL и HSV используют другие
               характеристики для описания цвета: тон (Hue), насыщенность
@@ -106,7 +129,30 @@ class Tutorial extends TutorialContainer {
               key={i}
               width={300}
               height={300}
-              colors={[background]}
+              background={foreground}
+              controlsOptions={{
+                enableKeys: false,
+                enableZoom: false,
+                autoRotate: true,
+              }}
+              animate
+              colorToPoint={a => fn(a, false)}
+              gridOpacity={1}
+            />
+          ))}
+          <div className="Tutorial-text">
+            <p>
+              Видно, что точки, равномерно формировавшие куб RGB распределяются
+              совершенно иначе. Если использовать вместо цилиндра конус и
+              двойной конус, можно увидеть более равномерное распределение:
+            </p>
+          </div>
+          {[colorToRgbPoint, colorToHslPoint, colorToHsvPoint].map((fn, i) => (
+            <ColorSpace
+              key={i}
+              width={300}
+              height={300}
+              background={foreground}
               controlsOptions={{
                 enableKeys: false,
                 enableZoom: false,
@@ -119,11 +165,15 @@ class Tutorial extends TutorialContainer {
           ))}
           <div className="Tutorial-text">
             <p>
-              Куб RGB изображают по-разному. Я ставлю его на чёрный угол и
+              Куб RGB можно повернуть по-разному. Я ставлю его на чёрный угол и
               поворачиваю таким образом, чтобы было заметно «сродство» цветовых
               моделей.
             </p>
-            <h2>HSL</h2>
+          </div>
+        </Page>
+        <Page>
+          <div className="Tutorial-text">
+            <Header hash="hsl">HSL</Header>
             <p>
               Когда мы подбираем цвета, модель HSL удобнее RGB, она позволяет
               оценивать понятные характеристики цвета.
@@ -149,8 +199,10 @@ class Tutorial extends TutorialContainer {
               отличается куда больше.
             </p>
           </div>
+        </Page>
+        <Page inverse>
           <div className="Tutorial-text">
-            <h2>LAB и HCL</h2>
+            <Header hash="lab-hcl">LAB и HCL</Header>
             <p>
               LAB — модель, определённая с учётом того, как наши глаза
               воспринимают свет. Первый параметр — «яркость» (Lightness).
@@ -159,7 +211,7 @@ class Tutorial extends TutorialContainer {
             </p>
             <p>
               В LAB значения яркости для <InlineSwatch color="#FF0" /> и{' '}
-              <InlineSwatch color="#00F" /> — 97% и 32%. Это уже больше похоже
+              <InlineSwatch color="#00F" /> — 98% и 30%. Это уже больше похоже
               на правду.
             </p>
             <p>
@@ -173,18 +225,20 @@ class Tutorial extends TutorialContainer {
               куб или конус, а фигуру сложной формы:
             </p>
           </div>
-          <ColorSpace
-            width={300}
-            height={300}
-            colors={[background]}
-            controlsOptions={{
-              enableKeys: false,
-              enableZoom: false,
-              autoRotate: true,
-            }}
-            animate
-            gridOpacity={1}
-          />
+          <div className="Tutorial-wide">
+            <ColorSpace
+              width={300}
+              height={300}
+              background={foreground}
+              controlsOptions={{
+                enableKeys: false,
+                enableZoom: false,
+                autoRotate: true,
+              }}
+              animate
+              gridOpacity={1}
+            />
+          </div>
           <div className="Tutorial-text">
             <p>
               Это и определяет главную сложность использования моделей LAB и
@@ -195,18 +249,25 @@ class Tutorial extends TutorialContainer {
               синего цвета <InlineSwatch color="#00F" /> насыщенность в модели
               HCL — 131%. Странная математика, правда?
             </p>
+          </div>
+        </Page>
+        <Page>
+          <div className="Tutorial-text">
             <p>
-              Теперь, когда мы немного познакомились с цветовыми пространствами
-              — пора <a href="#/">вернуться</a> к созданию цветовых схем.
+              Дальше — <a href="#/color-schemes">цветовые схемы</a>.
             </p>
           </div>
-        </div>
+        </Page>
+        <SchemeBar
+          schemes={selectedPalettes}
+          onLoadScheme={loadBase16Palette}
+        />
       </div>
     );
   }
 }
 
-Tutorial.propTypes = {
+TutorialColorSpaces.propTypes = {
   all: PropTypes.arrayOf(PropTypes.string),
   currentPalette: PropTypes.shape({
     palette: PropTypes.shape({
@@ -216,7 +277,8 @@ Tutorial.propTypes = {
   }),
 };
 
-const mapStateToProps = ({ currentPalette }) => {
+const mapStateToProps = ({ currentPalette, paletteList }) => {
+  const { palettes } = paletteList;
   const base = [];
   const accents = [];
   if (!currentPalette.slots) {
@@ -237,6 +299,7 @@ const mapStateToProps = ({ currentPalette }) => {
     all,
     accents,
     base,
+    palettes,
   };
 };
 
@@ -246,4 +309,4 @@ const mapDispatchToProps = dispatch =>
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Tutorial);
+)(TutorialColorSpaces);
