@@ -9,46 +9,6 @@
   color: var(--color7);
 }
 
-.Tutorial-page {
-  padding: 2em 0;
-}
-
-.Tutorial-page_narrow {
-  height: 10vh;
-}
-
-.Tutorial-page_inverse {
-  background: var(--color7);
-  color: var(--color0);
-}
-
-.Tutorial-page_inverse a {
-  color: var(--color0);
-}
-
-.Tutorial-page_inverse ::selection {
-  background: var(--color6);
-  color: var(--color0);
-}
-
-.Tutorial-page_inverse_open {
-  width: 100vw;
-  height: 10vh;
-  padding: 0;
-  border-style: solid;
-  border-width: 5vh 50vw;
-  border-color: transparent var(--color7) var(--color7) transparent;
-}
-
-.Tutorial-page_inverse_close {
-  width: 100vw;
-  height: 10vh;
-  padding: 0;
-  border-style: solid;
-  border-width: 5vh 50vw;
-  border-color: var(--color7) var(--color7) transparent transparent;
-}
-
 .Tutorial-text {
   clear: left;
   margin: 0 0 0 10vw;
