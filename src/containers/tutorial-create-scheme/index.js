@@ -168,10 +168,6 @@ class TutorialCreateScheme extends TutorialContainer {
               height={400}
               colors={interpolatedBase}
               background={base[7]}
-              controlsOptions={{
-                enableKeys: false,
-                enableZoom: false,
-              }}
             />
             {/*<Matrix colors={base} fn={deltaE} />*/}
             <Matrix colors={allColors} fn={deltaE} />
@@ -185,20 +181,12 @@ class TutorialCreateScheme extends TutorialContainer {
               height={400}
               colors={allColors}
               background={base[7]}
-              controlsOptions={{
-                enableKeys: false,
-                enableZoom: false,
-              }}
             />
             <ColorSpace
               width={600}
               height={400}
               colors={all}
               background={base[7]}
-              controlsOptions={{
-                enableKeys: false,
-                enableZoom: false,
-              }}
             />
             <br />
             <br />

@@ -215,15 +215,7 @@ class Tutorial extends TutorialContainer {
             </p>
           </div>
           <div className="Tutorial-wide">
-            <ColorSpace
-              width={600}
-              height={400}
-              colors={base}
-              controlsOptions={{
-                enableKeys: false,
-                enableZoom: false,
-              }}
-            />
+            <ColorSpace width={600} height={400} colors={base} />
           </div>
           <div className="Tutorial-text">
             <p>
@@ -252,10 +244,6 @@ class Tutorial extends TutorialContainer {
               height={400}
               colors={accents}
               background={base[7]}
-              controlsOptions={{
-                enableKeys: false,
-                enableZoom: false,
-              }}
             />
           </div>
           <div className="Tutorial-text">
@@ -322,10 +310,6 @@ class Tutorial extends TutorialContainer {
               height={400}
               colors={all}
               background={base[7]}
-              controlsOptions={{
-                enableKeys: false,
-                enableZoom: false,
-              }}
             />
           </div>
           <div className="Tutorial-text">
@@ -390,9 +374,7 @@ class Tutorial extends TutorialContainer {
         </div>
         <div className="Tutorial-page">
           <div className="Tutorial-text">
-            <p>
-              Дальше — <a href="#/tutorial-color-spaces">цветовые модели</a>.
-            </p>
+            <p>Дальше — создание цветовой схемы.</p>
           </div>
         </div>
         <SchemeBar

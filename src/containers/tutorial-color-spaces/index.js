@@ -130,14 +130,9 @@ class TutorialColorSpaces extends TutorialContainer {
               width={300}
               height={300}
               background={foreground}
-              controlsOptions={{
-                enableKeys: false,
-                enableZoom: false,
-                autoRotate: true,
-              }}
-              animate
               colorToPoint={a => fn(a, false)}
               gridOpacity={1}
+              autoRotate
             />
           ))}
           <div className="Tutorial-text">
@@ -153,14 +148,9 @@ class TutorialColorSpaces extends TutorialContainer {
               width={300}
               height={300}
               background={foreground}
-              controlsOptions={{
-                enableKeys: false,
-                enableZoom: false,
-                autoRotate: true,
-              }}
-              animate
               colorToPoint={fn}
               gridOpacity={1}
+              autoRotate
             />
           ))}
           <div className="Tutorial-text">
@@ -230,13 +220,8 @@ class TutorialColorSpaces extends TutorialContainer {
               width={300}
               height={300}
               background={foreground}
-              controlsOptions={{
-                enableKeys: false,
-                enableZoom: false,
-                autoRotate: true,
-              }}
-              animate
               gridOpacity={1}
+              autoRotate
             />
           </div>
           <div className="Tutorial-text">

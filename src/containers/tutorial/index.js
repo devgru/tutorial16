@@ -8,9 +8,11 @@ import { loadBase16Palette, setColor } from '../../modules/currentPalette';
 
 import GithubCorner from '../../presentational/GithubCorner';
 import PageTitle from '../../presentational/TutorialPages/01-Title';
-import PageInteractive from '../../presentational/TutorialPages/00-Interactive';
+import PageInteractive from '../../presentational/TutorialPages/02-Interactive';
 import SchemeBar from '../../presentational/SchemeBar';
 import Favicon from '../../presentational/Favicon';
+import Page from '../../presentational/Page';
+import Header from '../../presentational/Header';
 
 import './index.css';
 
@@ -48,11 +50,19 @@ class Tutorial extends TutorialContainer {
         <GithubCorner />
         <PageTitle />
         <PageInteractive base={base} />
-        <div className="Tutorial-text">
-          <p>
-            Дальше — <a href="#/color-spaces">цветовые модели</a>.
-          </p>
-        </div>
+        <Page>
+          <div className="Tutorial-text">
+            <Header hash="structure">Структура</Header>
+            <p>
+              Статья разделена на странице, каждая состоит из блоков. На каждый
+              из заголовков можно сослаться, скопировав ссылку рядом с
+              заголовком.
+            </p>
+            <p>
+              Следующая страница — <a href="#/color-spaces">цветовые модели</a>.
+            </p>
+          </div>
+        </Page>
         <SchemeBar
           schemes={selectedPalettes}
           onLoadScheme={loadBase16Palette}

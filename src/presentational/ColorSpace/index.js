@@ -3,9 +3,13 @@ import PropTypes from 'prop-types';
 import Sensor from 'react-visibility-sensor';
 import React3 from 'react-three-renderer';
 import * as THREE from 'three';
-import OrbitControls from 'three-orbit-controls';
+import OrbitControls from '../../vendor/threejs-orbit-controls';
 import { rgb } from 'd3-color';
+import { easeExpOut } from 'd3-ease';
+import { select } from 'd3-selection';
+import { interrupt } from 'd3-transition';
 import uniqBy from 'lodash.uniqby';
+import debounce from 'lodash.debounce';
 
 import generatePoints from '../../utils/generatePoints';
 import createPlaneMesh from '../../utils/createPlaneMesh';
@@ -22,6 +26,7 @@ class ColorSpace extends Component {
     const gridOpacity = props.gridOpacity || 0.1;
     const gridSteps = props.gridSteps || 5;
     const gridPoints = generatePoints(colorToPoint, gridSteps, gridOpacity);
+    this.lastPosition = 0;
     this.state = {
       colorToPoint,
       gridPoints,
@@ -31,33 +36,75 @@ class ColorSpace extends Component {
 
   componentDidMount() {
     const Controls = OrbitControls(THREE);
-    this.controls = new Controls(this.refs.camera, this.ref);
-    const { controlsOptions = {} } = this.props;
-    Object.keys(controlsOptions).forEach(key => {
-      this.controls[key] = controlsOptions[key];
-    });
+    this.controls = new Controls(this.refs.camera, this.divRef);
+    this.controls.enableKeys = false;
+    this.controls.enableZoom = false;
+    this.controls.autoRotate = this.props.autoRotate;
 
-    const renderScene = () => {
+    this.renderScene = () => {
       this.state.renderScene();
     };
-    this.controls.addEventListener('start', renderScene);
-    this.controls.addEventListener('end', renderScene);
-    this.controls.addEventListener('change', renderScene);
+    this.controls.addEventListener('start', this.renderScene);
+    this.controls.addEventListener('change', this.renderScene);
+    this.controls.addEventListener('end', this.renderScene);
+
+    if (this.props.autoTilt) {
+      window.addEventListener('scroll', this.tilt);
+    }
   }
 
-  animate() {
+  tilt = debounce(() => {
+    if (!this.isVisible) {
+      return;
+    }
+
+    const r = this.divRef.getBoundingClientRect();
+    const position = r.bottom + r.top - window.innerHeight;
+
+    const { lastPosition } = this;
+    this.lastPosition = position;
+
+    const deltaPx = position - lastPosition;
+    const deltaDegree = deltaPx / (6 * 100);
+
+    interrupt(this);
+    select(this)
+      .transition()
+      .duration(400)
+      .ease(easeExpOut)
+      .tween('', () => {
+        let lastP = 0;
+        return progress => {
+          const delta = (progress - lastP) * deltaDegree;
+          lastP = progress;
+
+          this.controls.rotateUp(delta);
+          this.controls.rotateLeft(Math.abs(delta));
+          this.controls.update();
+          this.state.renderScene();
+        };
+      });
+    // .on('start', () => {console.log('start')})
+    // .on('interrupt', () => {console.log('interrupt')})
+    // .on('end', () => {console.log('end')})
+  }, 30);
+
+  animationStep() {
     if (!this.isVisible) {
       return;
     }
     if (this.controls) {
       this.controls.update();
     }
-    requestAnimationFrame(() => this.animate());
+    requestAnimationFrame(() => this.animationStep());
   }
 
   componentWillUnmount() {
     this.controls.dispose();
     delete this.controls;
+    if (this.props.autoTilt) {
+      window.removeEventListener('scroll', this.tilt);
+    }
   }
 
   onManualRenderTriggerCreated = renderScene => {
@@ -78,7 +125,8 @@ class ColorSpace extends Component {
       accents = [],
       width,
       height,
-      animate,
+      autoRotate,
+      autoTilt,
     } = this.props;
     const { base } = this.context;
 
@@ -93,7 +141,7 @@ class ColorSpace extends Component {
 
     const onVisibilityChange = isVisible => {
       this.isVisible = isVisible;
-      this.animate();
+      this.animationStep();
     };
 
     const react3 = (
@@ -111,8 +159,8 @@ class ColorSpace extends Component {
             ref="camera"
             fov={50}
             aspect={width / height}
-            near={1}
-            far={10000}
+            near={10}
+            far={1000}
             position={this.cameraPosition}
           />
           {createPlaneMesh(plane)}
@@ -123,18 +171,19 @@ class ColorSpace extends Component {
       </React3>
     );
 
-    const wrapped = animate ? (
-      <Sensor onChange={onVisibilityChange} partialVisibility>
-        {react3}
-      </Sensor>
-    ) : (
-      react3
-    );
+    const wrapped =
+      autoRotate || autoTilt ? (
+        <Sensor onChange={onVisibilityChange} partialVisibility>
+          {react3}
+        </Sensor>
+      ) : (
+        react3
+      );
 
     return (
       <div
         className="ColorSpace"
-        ref={ref => (this.ref = ref)}
+        ref={ref => (this.divRef = ref)}
         style={{
           width: `${width}px`,
           height: `${height}px`,
