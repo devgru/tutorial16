@@ -7,26 +7,30 @@ let setScrollRestoration = function(mode) {
     history.scrollRestoration = mode;
   }
 };
-const scrollToAnchor = () => {
+const scrollToAnchor = initial => {
+  setScrollRestoration('manual');
   const hashParts = window.location.hash.split('#');
+  console.log('target', hashParts);
   if (hashParts.length <= 2) {
-    setScrollRestoration('auto');
+    if (initial) {
+      window.scrollTo(0, 0);
+    }
     return;
   }
   const hash = hashParts.slice(-1)[0];
   const target = document.querySelector(`#${hash}`);
   if (!target) {
-    setScrollRestoration('auto');
     return;
   }
   target.scrollIntoView();
-  setScrollRestoration('manual');
 };
 
 class TutorialContainer extends Component {
   componentDidMount() {
     this.updateStyles();
 
+    console.log('SD');
+    scrollToAnchor(true);
     window.onhashchange = scrollToAnchor;
   }
 

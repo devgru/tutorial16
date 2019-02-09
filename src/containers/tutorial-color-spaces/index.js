@@ -23,26 +23,6 @@ class TutorialColorSpaces extends TutorialContainer {
     super(props);
     props.loadBase16Palette('solarized-light');
   }
-  componentDidMount() {
-    this.updateStyles();
-  }
-
-  componentDidUpdate() {
-    this.updateStyles();
-  }
-
-  updateStyles() {
-    const { style } = document.documentElement;
-    const { base } = this.props;
-
-    if (!base) {
-      return;
-    }
-
-    base.forEach((color, i) => {
-      style.setProperty('--color' + i, color);
-    });
-  }
 
   render() {
     const { all, palettes } = this.props;
