@@ -5,7 +5,7 @@ import React3 from 'react-three-renderer';
 import * as THREE from 'three';
 import OrbitControls from '../../vendor/threejs-orbit-controls';
 import { rgb } from 'd3-color';
-import { easeExpOut } from 'd3-ease';
+import { easeSinInOut } from 'd3-ease';
 import { select } from 'd3-selection';
 import { interrupt } from 'd3-transition';
 import uniqBy from 'lodash.uniqby';
@@ -70,8 +70,8 @@ class ColorSpace extends Component {
     interrupt(this);
     select(this)
       .transition()
-      .duration(400)
-      .ease(easeExpOut)
+      .duration(600)
+      .ease(easeSinInOut)
       .tween('', () => {
         let lastP = 0;
         return progress => {
@@ -173,7 +173,12 @@ class ColorSpace extends Component {
 
     const wrapped =
       autoRotate || autoTilt ? (
-        <Sensor onChange={onVisibilityChange} partialVisibility>
+        <Sensor
+          partialVisibility
+          intervalCheck={false}
+          scrollCheck
+          onChange={onVisibilityChange}
+        >
           {react3}
         </Sensor>
       ) : (
