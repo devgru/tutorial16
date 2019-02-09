@@ -4,22 +4,3 @@
   background: var(--color7);
   overflow: hidden;
 }
-
-.Navigation-item {
-  color: var(--color0);
-  margin: 0.5em 0 0.5em 1.8em;
-  float: left;
-}
-
-.Navigation-item a {
-  color: var(--color0);
-}
-
-.Navigation-item.inactive a {
-  color: var(--color2);
-}
-
-.Navigation-item:first-child {
-  list-style: none;
-  margin-left: 0;
-}

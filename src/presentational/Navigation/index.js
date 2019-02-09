@@ -1,23 +1,28 @@
 import React from 'react';
 
 import './index.css';
+import NavigationItem from '../NavigationItem';
 
-export default () => (
-  <ul className="Navigation">
-    <li className="Navigation-item">
-      <a href="#/">Стартовая</a>
-    </li>
-    <li className="Navigation-item inactive">
-      <a>Математика RGB</a>
-    </li>
-    <li className="Navigation-item">
-      <a href="#/color-spaces">Цветовые модели</a>
-    </li>
-    <li className="Navigation-item">
-      <a href="#/color-schemes">Цветовые схемы</a>
-    </li>
-    <li className="Navigation-item inactive">
-      <a>Создание схемы</a>
-    </li>
-  </ul>
-);
+export default () => {
+  const hashParts = window.location.hash.split('#');
+  const activePage = hashParts[1];
+  return (
+    <ul className="Navigation">
+      <NavigationItem activePage={activePage} page="/">
+        Стартовая
+      </NavigationItem>
+      <NavigationItem activePage={activePage} page="/math">
+        Математика RGB
+      </NavigationItem>
+      <NavigationItem activePage={activePage} page="/color-spaces">
+        Цветовые модели
+      </NavigationItem>
+      <NavigationItem activePage={activePage} page="/color-schemes">
+        Цветовые схемы
+      </NavigationItem>
+      <NavigationItem activePage={activePage} disabled>
+        Создание схемы
+      </NavigationItem>
+    </ul>
+  );
+};
