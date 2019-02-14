@@ -10,7 +10,6 @@ let setScrollRestoration = function(mode) {
 const scrollToAnchor = initial => {
   setScrollRestoration('manual');
   const hashParts = window.location.hash.split('#');
-  console.log('target', hashParts);
   if (hashParts.length <= 2) {
     if (initial) {
       window.scrollTo(0, 0);
@@ -26,10 +25,18 @@ const scrollToAnchor = initial => {
 };
 
 class TutorialContainer extends Component {
+  constructor(props) {
+    super(props);
+
+    if (!TutorialContainer.initialized) {
+      TutorialContainer.initialized = true;
+      props.loadBase16Palette('solarized-light');
+    }
+  }
+
   componentDidMount() {
     this.updateStyles();
 
-    console.log('SD');
     scrollToAnchor(true);
     window.onhashchange = scrollToAnchor;
   }

@@ -17,15 +17,11 @@ import Page from '../../presentational/Page';
 
 import '../tutorial/index.css';
 import SchemeBar from '../../presentational/SchemeBar';
+import Navigation from '../../presentational/Navigation';
 
 class TutorialColorSpaces extends TutorialContainer {
-  constructor(props) {
-    super(props);
-    props.loadBase16Palette('solarized-light');
-  }
-
   render() {
-    const { all, palettes } = this.props;
+    const { all, palettes, loadBase16Palette } = this.props;
     if (!all) {
       return null;
     }
@@ -53,6 +49,9 @@ class TutorialColorSpaces extends TutorialContainer {
         <Page>
           <div className="Tutorial-text">
             <h1>Цветовые модели</h1>
+          </div>
+          <Navigation />
+          <div className="Tutorial-text">
             <Header hash="rgb">RGB</Header>
             <p>
               Цвета хранятся и передаются в формате RGB — по байту на каждую из

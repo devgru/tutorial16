@@ -11,9 +11,9 @@ export default () => {
       <NavigationItem activePage={activePage} page="/">
         Стартовая
       </NavigationItem>
-      <NavigationItem activePage={activePage} page="/math">
+      {/*<NavigationItem activePage={activePage} page="/math">
         Математика RGB
-      </NavigationItem>
+      </NavigationItem>*/}
       <NavigationItem activePage={activePage} page="/color-spaces">
         Цветовые модели
       </NavigationItem>

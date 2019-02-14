@@ -23,6 +23,7 @@ import Favicon from '../../presentational/Favicon';
 import delta from '../../utils/delta';
 
 import './index.css';
+import Navigation from '../../presentational/Navigation';
 
 const deltaE = (fg, bg) => Math.round(delta(fg, bg));
 
@@ -46,11 +47,6 @@ Index: languages/ini.js
 const inlineSwatch = color => <InlineSwatch key={color} color={color} />;
 
 class Tutorial extends TutorialContainer {
-  constructor(props) {
-    super(props);
-    props.loadBase16Palette('solarized-light');
-  }
-
   render() {
     const {
       base,
@@ -106,6 +102,7 @@ class Tutorial extends TutorialContainer {
           <div className="Tutorial-text">
             <h1>Цветовые схемы</h1>
           </div>
+          <Navigation />
         </Page>
         <PageSchemesIntro />
         <PageColorScheme />
@@ -371,7 +368,7 @@ class Tutorial extends TutorialContainer {
         </div>
         <div className="Tutorial-page">
           <div className="Tutorial-text">
-            <p>Дальше — создание цветовой схемы.</p>
+            <p>Следующий шаг — создание цветовой схемы.</p>
           </div>
         </div>
         <SchemeBar

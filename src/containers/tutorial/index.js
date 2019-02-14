@@ -17,11 +17,6 @@ import Header from '../../presentational/Header';
 import './index.css';
 
 class Tutorial extends TutorialContainer {
-  constructor(props) {
-    super(props);
-    props.loadBase16Palette('solarized-light');
-  }
-
   render() {
     const { base, palettes, loadBase16Palette } = this.props;
     if (!base) {

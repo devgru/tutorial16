@@ -27,7 +27,6 @@ const deltaE = (fg, bg) => Math.round(delta(fg, bg));
 class TutorialCreateScheme extends TutorialContainer {
   constructor(props) {
     super(props);
-    props.loadBase16Palette('solarized-light');
 
     this.state = {
       currentColor: null,
