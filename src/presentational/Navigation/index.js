@@ -15,10 +15,10 @@ export default () => {
         Математика RGB
       </NavigationItem>*/}
       <NavigationItem activePage={activePage} page="/color-spaces">
-        Цветовые модели
+        Модели
       </NavigationItem>
       <NavigationItem activePage={activePage} page="/color-schemes">
-        Цветовые схемы
+        Схемы
       </NavigationItem>
       <NavigationItem activePage={activePage} disabled>
         Создание схемы
