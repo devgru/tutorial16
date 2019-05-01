@@ -4,10 +4,11 @@ import rgbCached from '../../utils/rgb';
 import Swatch from '../Swatch';
 import { range } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
+import delta from '../../utils/delta';
 
 import './index.css';
 
-class SinglePicker extends Component {
+class Single2DPicker extends Component {
   constructor(props) {
     super(props);
     const { width, height, scale = 1 } = props;
@@ -74,7 +75,7 @@ class SinglePicker extends Component {
   };
 
   draw = () => {
-    const { color, dimensions, model } = this.props;
+    const { color, dimensions, model, avoidDelta, avoidColor } = this.props;
     if (color === this.drawnColor) {
       return;
     }
@@ -90,6 +91,8 @@ class SinglePicker extends Component {
       range(0, scaledWidth).forEach(x => {
         colorToDisplay[dimensions[0]] = x / rs;
         colorToDisplay[dimensions[1]] = (scaledHeight - y) / rs;
+        const tooClose =
+          avoidColor && delta(avoidColor, colorToDisplay) < avoidDelta;
         const displayable = colorToDisplay.displayable();
         if (!displayable) {
           // position += 4;
@@ -106,7 +109,7 @@ class SinglePicker extends Component {
         imageData.data[position] = r;
         imageData.data[position + 1] = g;
         imageData.data[position + 2] = b;
-        imageData.data[position + 3] = displayable ? 255 : 25;
+        imageData.data[position + 3] = displayable && !tooClose ? 255 : 25;
         position += 4;
       });
     });
@@ -199,7 +202,7 @@ class Picker extends Component {
   };
 
   render() {
-    const { color, onClose } = this.props;
+    const { color, onClose, avoidColor, avoidDelta } = this.props;
     const { setColor } = this;
     const style = {
       background: color,
@@ -207,26 +210,30 @@ class Picker extends Component {
     return (
       <div className="Picker" style={style}>
         <div className="Picker-left">
-          <SinglePicker
+          <Single2DPicker
             width={360}
             height={132}
             setColor={setColor}
             color={color}
             dimensions={['h', 'c']}
             model={hcl}
+            avoidColor={avoidColor}
+            avoidDelta={avoidDelta}
           />
           <br />
-          <SinglePicker
+          <Single2DPicker
             width={360}
             height={100}
             setColor={setColor}
             color={color}
             dimensions={['h', 'l']}
             model={hcl}
+            avoidColor={avoidColor}
+            avoidDelta={avoidDelta}
           />
         </div>
         <div className="Picker-right">
-          <SinglePicker
+          <Single2DPicker
             width={264}
             height={200}
             setColor={setColor}
@@ -234,6 +241,8 @@ class Picker extends Component {
             dimensions={['c', 'l']}
             scale={2}
             model={hcl}
+            avoidColor={avoidColor}
+            avoidDelta={avoidDelta}
           />
         </div>
         <div className="Picker-right">
@@ -241,33 +250,39 @@ class Picker extends Component {
         </div>
         <div className="Picker-left">
           <div className="Picker-right">
-            <SinglePicker
+            <Single2DPicker
               width={256}
               height={256}
               setColor={setColor}
               color={color}
               dimensions={['r', 'g']}
               model={rgb}
+              avoidColor={avoidColor}
+              avoidDelta={avoidDelta}
             />
           </div>
           <div className="Picker-right">
-            <SinglePicker
+            <Single2DPicker
               width={256}
               height={256}
               setColor={setColor}
               color={color}
               dimensions={['g', 'b']}
               model={rgb}
+              avoidColor={avoidColor}
+              avoidDelta={avoidDelta}
             />
           </div>
           <div className="Picker-right">
-            <SinglePicker
+            <Single2DPicker
               width={256}
               height={256}
               setColor={setColor}
               color={color}
               dimensions={['b', 'r']}
               model={rgb}
+              avoidColor={avoidColor}
+              avoidDelta={avoidDelta}
             />
           </div>
         </div>

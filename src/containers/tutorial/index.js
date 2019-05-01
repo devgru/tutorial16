@@ -41,7 +41,7 @@ class Tutorial extends TutorialContainer {
 
     return (
       <div className="Tutorial">
-        <Favicon background={background} foreground={foreground} />
+        <Favicon />
         <GithubCorner />
         <PageTitle />
         <PageInteractive base={base} />

@@ -1,17 +1,18 @@
 import { Vector3 } from 'three';
 import { svd } from 'numeric';
 import { lab } from 'd3-color';
+import labCached from './lab';
 import colorToLabPoint from './colorToLabPoint';
 import meanObject from './meanObject';
+import meanArray from './meanArray';
 
 export default function fitPlane(accents) {
   if (!accents) {
     return;
   }
 
-  const labs = accents.map(color => lab(color));
-  const { l, a, b } = meanObject(['l', 'a', 'b'], labs);
-  const color = lab(l, a, b);
+  const labs = accents.map(labCached);
+  const color = lab(...meanArray(labs));
 
   const colorPoints = accents.map(colorToLabPoint);
   const centroidObject = meanObject(['x', 'y', 'z'], colorPoints);
@@ -30,7 +31,8 @@ export default function fitPlane(accents) {
   // they suggest using 3 × N matrix, but numeric library supports only N × 3
   // so instead of U (left singular vector) we refer to V (right one)
   const { V } = svd(relativePoints);
-  const normal = new Vector3(...V.map(([_a, _b, c]) => c));
+  const thirdColumn = ([_a, _b, c]) => c;
+  const normal = new Vector3(...V.map(thirdColumn));
 
   return {
     centroid,

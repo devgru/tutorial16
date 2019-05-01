@@ -18,6 +18,8 @@ import SchemeTable from '../../presentational/SchemeTable';
 import Picker from '../../presentational/Picker';
 import ColorSpace from '../../presentational/ColorSpace';
 import Matrix from '../../presentational/Matrix';
+import Favicon from '../../presentational/Favicon';
+import Navigation from '../../presentational/Navigation';
 
 import '../tutorial/index.css';
 import delta from '../../utils/delta';
@@ -30,6 +32,8 @@ class TutorialCreateScheme extends TutorialContainer {
 
     this.state = {
       currentColor: null,
+      overriddenForeground: null,
+      overriddenSteps: null,
     };
   }
 
@@ -97,6 +101,11 @@ class TutorialCreateScheme extends TutorialContainer {
     );
 
     const colorPicked = index => color => {
+      if (isEqual(index, [1, 3])) {
+        this.setState({
+          overriddenForeground: true,
+        });
+      }
       this.props.setColor(index, color);
     };
 
@@ -106,14 +115,19 @@ class TutorialCreateScheme extends TutorialContainer {
       });
     };
 
-    const colorPicker = indices => {
-      const color = currentPalette.slots[indices[0]].colors[indices[1]];
+    const colorPicker = (indices, avoidIndices) => {
+      const { slots } = currentPalette;
+      const color = slots[indices[0]].colors[indices[1]];
+      const avoidColor =
+        avoidIndices && slots[avoidIndices[0]].colors[avoidIndices[1]];
       return (
         <div>
           <Swatch color={color} onClick={editColor(indices)} />
           {isEqual(indices, this.state.currentColor) && (
             <Picker
               color={color}
+              avoidColor={avoidColor}
+              avoidDelta={50}
               onColorPicked={colorPicked(indices)}
               onClose={editColor(null)}
             />
@@ -125,28 +139,19 @@ class TutorialCreateScheme extends TutorialContainer {
     const allColors = interpolatedBase.concat(suggestedAccents);
     return (
       <div className="Tutorial">
+        <Favicon />
         <GithubCorner />
         <Page>
           <div className="Tutorial-text">
-            <Header hash="start">Выбор основы</Header>
+            <h1>Создание цветовой схемы</h1>
             <p>
-              Выберите заготовку — одну из существующих схем. Это позволит не
-              создавать палитру с нуля, а начать с уже работающего сочетания
-              цветов и менять цвет за цветом на свой вкус. Если хотите дать
-              полёт фантазии — берите одну из схем tutorial, это максимально
-              контрастные и простые схемы.
+              <a href="https://devg.ru">Дима Семьюшкин</a>,
+              2018&thinsp;–&thinsp;2019, лицензия MIT
             </p>
           </div>
+          <Navigation />
         </Page>
         <Page>
-          <div className="Tutorial-text">
-            <SchemeTable
-              schemes={selectedPalettes}
-              onLoadScheme={loadBase16Palette}
-            />
-          </div>
-        </Page>
-        <Page inverse>
           <div className="Tutorial-text">
             <Header hash="select-base-colors">
               Выбор цветов основной последовательности
@@ -157,7 +162,7 @@ class TutorialCreateScheme extends TutorialContainer {
             </p>
             {colorPicker([0, 0])}
             <p>Теперь цвет текста.</p>
-            {colorPicker([1, 3])}
+            {colorPicker([1, 3], [0, 0])}
             <p>Давайте посмотрим на промежуточные цвета.</p>
             {interpolatedBase.map(c => (
               <Swatch key={c} color={c} />

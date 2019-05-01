@@ -96,11 +96,15 @@ class Tutorial extends TutorialContainer {
 
     return (
       <div className="Tutorial">
-        <Favicon background={background} foreground={foreground} />
+        <Favicon />
         <GithubCorner />
         <Page>
           <div className="Tutorial-text">
             <h1>Цветовые схемы</h1>
+            <p>
+              <a href="https://devg.ru">Дима Семьюшкин</a>,
+              2018&thinsp;–&thinsp;2019, лицензия MIT
+            </p>
           </div>
           <Navigation />
         </Page>

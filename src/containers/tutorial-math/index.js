@@ -42,7 +42,7 @@ class TutorialColorSpaces extends TutorialContainer {
 
     return (
       <div className="Tutorial">
-        <Favicon background={background} foreground={foreground} />
+        <Favicon />
         <GithubCorner />
         <Page>
           <div className="Tutorial-text">

@@ -25,9 +25,9 @@ export default function generateAccents(base) {
   const hueDiff = s => h =>
     Math.min(Math.abs(h - s), Math.abs(h - s - 360), Math.abs(h - s + 360));
 
-  range(0.1, 1.01, 0.1).forEach(hueDiffImpact => {
-    range(0, 360.0001, 5).forEach(lH => {
-      range(10, 100).some(r => {
+  range(0.1, 1.01, 0.2).forEach(hueDiffImpact => {
+    range(0, 360.0001, 10).forEach(lH => {
+      range(10, 100, 2).some(r => {
         const newAccents = hues.map(h =>
           lab(
             l + (hueDiff(lH)(h) - 90) * hueDiffImpact,

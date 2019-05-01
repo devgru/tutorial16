@@ -65,15 +65,19 @@ class TutorialContainer extends Component {
   }
 
   getChildContext() {
-    const { base } = this.props;
+    const { all, base, accents } = this.props;
     return {
+      all,
       base,
+      accents,
     };
   }
 }
 
 TutorialContainer.childContextTypes = {
+  all: PropTypes.arrayOf(PropTypes.string),
   base: PropTypes.arrayOf(PropTypes.string),
+  accents: PropTypes.arrayOf(PropTypes.string),
 };
 TutorialContainer.propTypes = {
   all: PropTypes.arrayOf(PropTypes.string),

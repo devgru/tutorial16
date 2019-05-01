@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ReactFavicon from 'react-favicon';
+import { alea } from 'seedrandom';
 
 const SIZE = 32;
 
@@ -14,24 +16,24 @@ class Favicon extends Component {
     this.forceUpdate();
   };
 
-  draw = c => {
-    const { background, foreground } = this.props;
+  draw = ctx => {
+    const step = SIZE / 8;
 
-    const skew = SIZE / 16;
+    ctx.clearRect(0, 0, SIZE, SIZE);
 
-    c.clearRect(0, 0, SIZE, SIZE);
-    c.fillStyle = foreground;
-    c.fillRect(0, 0, SIZE, SIZE);
-
-    c.fillStyle = background;
-    c.lineWidth = 0;
-    c.beginPath();
-    c.lineTo(0, 0);
-    c.lineTo(SIZE, 0);
-    c.lineTo(SIZE, SIZE / 2 - skew);
-    c.lineTo(0, SIZE / 2 + skew);
-    c.closePath();
-    c.fill();
+    const { base, accents } = this.context;
+    base.forEach((color, index) => {
+      ctx.fillStyle = color;
+      ctx.fillRect(0, index * step, SIZE, step);
+    });
+    accents.forEach((color, index) => {
+      const random = alea(color + index);
+      ctx.fillStyle = color;
+      const x = index * step;
+      const y = Math.round(random() * ((SIZE - 1) / 2)) * 2;
+      console.log(x, y, color);
+      ctx.fillRect(x, y, 2, 2);
+    });
   };
 
   render() {
@@ -46,5 +48,10 @@ class Favicon extends Component {
     );
   }
 }
+
+Favicon.contextTypes = {
+  base: PropTypes.arrayOf(PropTypes.string),
+  accents: PropTypes.arrayOf(PropTypes.string),
+};
 
 export default Favicon;
