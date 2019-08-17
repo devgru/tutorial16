@@ -104,7 +104,7 @@ class TutorialColorSpaces extends TutorialContainer {
             <p>
               Цвет во всех перечисленных моделях описывается в трёх числах.
               Модель, описываемую тремя характеристиками можно отобразить в
-              пространстве. Вот так выглядят RGB, HSL и HSV:
+              пространстве. Вот так можно изобразить RGB, HSL и HSV:
             </p>
           </div>
           {[colorToRgbPoint, colorToHslPoint, colorToHsvPoint].map((fn, i) => (

@@ -7,15 +7,6 @@ export const SET_COLOR = 'currentPalette/SET_COLOR';
 
 const initialState = {};
 
-function componentToHex(c) {
-  const hex = Math.round(c).toString(16);
-  return hex.length === 1 ? '0' + hex : hex;
-}
-
-function rgbToHex({ r, g, b }) {
-  return '#' + componentToHex(r) + componentToHex(g) + componentToHex(b);
-}
-
 export default (state = initialState, action) => {
   switch (action.type) {
     case SET_COLOR:
@@ -32,7 +23,7 @@ export default (state = initialState, action) => {
               if (j !== action.index[1]) {
                 return oldColor;
               }
-              return rgbToHex(rgb(action.color));
+              return rgb(action.color).hex();
             }),
           };
         }),

@@ -22,7 +22,7 @@ export default function colorToHsvPoint(color, cone = true) {
   };
 
   hsv.h -= 45;
-  const rad = Math.PI * hsv.h / 180;
+  const rad = (Math.PI * hsv.h) / 180;
   return new Vector3(hsv.s * 97.15, -103 + 206 * hsv.v, 0).applyAxisAngle(
     axisY,
     rad

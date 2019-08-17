@@ -1,3 +1,7 @@
 .Delta {
   white-space: nowrap;
 }
+
+.Delta > * {
+  white-space: normal;
+}

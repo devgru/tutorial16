@@ -4,8 +4,8 @@ import labCached from './lab';
 const cache = {};
 
 export default function delta(c1, c2) {
-  let k1 = typeof c1 === 'string' ? c1 : c1.hex();
-  let k2 = typeof c2 === 'string' ? c2 : c2.hex();
+  const k1 = typeof c1 === 'string' ? c1 : c1.hex();
+  const k2 = typeof c2 === 'string' ? c2 : c2.hex();
   const key = k1 + k2;
   if (!cache[key]) {
     cache[key] = cache[k2 + k1] = getDeltaE00(toLab(c1), toLab(c2));
