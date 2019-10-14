@@ -1,4 +1,5 @@
 import palettes from '../base16-palettes';
+
 const initialState = {
   palettes: palettes,
 };

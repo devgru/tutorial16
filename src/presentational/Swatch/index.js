@@ -13,7 +13,7 @@ const descriptor = new ColorDescriptor('ru');
 
 const noop = () => {};
 
-const Swatch = ({ color, onClick = noop }, { base }) => {
+const Swatch = ({ color, onClick = noop, interactive = false }, { base }) => {
   const textColors = [base[0], base[base.length - 1]];
   const textColor = farthestOf(color, textColors);
   const rgbColor = rgb(color);
@@ -25,15 +25,15 @@ const Swatch = ({ color, onClick = noop }, { base }) => {
   const { h, c, l } = hclColor;
   const description = descriptor.describe(color).join(', ');
 
+  const style = {
+    background: color,
+    color: textColor,
+  };
+  if (interactive) {
+    style.border = '3px dashed';
+  }
   return (
-    <span
-      onClick={onClick}
-      className="Swatch"
-      style={{
-        background: color,
-        color: textColor,
-      }}
-    >
+    <span onClick={onClick} className="Swatch" style={style}>
       <span className="SwatchProperties">{name}</span>
       <span className="SwatchProperties">{description}</span>
       <span className="SwatchProperties">{rgbColor.hex().toUpperCase()}</span>

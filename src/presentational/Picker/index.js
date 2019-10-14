@@ -5,7 +5,6 @@ import Swatch from '../Swatch';
 import { range } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
 import delta from '../../utils/delta';
-import findOpposite from '../../utils/findOpposite';
 
 import './index.css';
 
@@ -177,6 +176,7 @@ class Single2DPicker extends Component {
             <circle
               fill={effectiveColor}
               stroke="black"
+              strokeWidth="1.5"
               r="5"
               cx={cx}
               cy={cy}
@@ -184,6 +184,7 @@ class Single2DPicker extends Component {
             <circle
               fill="transparent"
               stroke="white"
+              strokeWidth="1.5"
               strokeDasharray="1,1"
               r="5"
               cx={cx}
@@ -207,7 +208,6 @@ class Picker extends Component {
     const style = {
       background: color,
     };
-    const oppositeColor = findOpposite(color);
     return (
       <div className="Picker" style={style}>
         <div className="Picker-left">
@@ -239,17 +239,6 @@ class Picker extends Component {
             height={200}
             setColor={setColor}
             color={color}
-            dimensions={['c', 'l']}
-            scale={2}
-            model={hcl}
-            avoidColor={avoidColor}
-            avoidDelta={avoidDelta}
-          />
-          <Single2DPicker
-            width={264}
-            height={200}
-            setColor={() => {}}
-            color={oppositeColor}
             dimensions={['c', 'l']}
             scale={2}
             model={hcl}

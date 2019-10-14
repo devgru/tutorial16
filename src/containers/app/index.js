@@ -36,7 +36,10 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = () => ({});
+const mapStateToProps = state => {
+  console.log('STATE', state);
+  return {};
+};
 const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch);
 
 export default connect(

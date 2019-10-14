@@ -11,6 +11,7 @@ const angleZ = Math.atan(1 / Math.sqrt(2));
 function rgbTransform(x) {
   return 0.466 * x - 59.5;
 }
+
 export default function colorToRgbPoint(color) {
   const { r, g, b } = rgb(color);
   return new Vector3(rgbTransform(r), rgbTransform(g), rgbTransform(b))

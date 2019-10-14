@@ -20,7 +20,7 @@ export default () => {
       <NavigationItem activePage={activePage} page="/color-schemes">
         Схемы
       </NavigationItem>
-      <NavigationItem activePage={activePage} disabled>
+      <NavigationItem activePage={activePage} page="/create-scheme">
         Создание схемы
       </NavigationItem>
     </ul>

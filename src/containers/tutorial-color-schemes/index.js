@@ -4,7 +4,7 @@ import TutorialContainer from '../tutorial-container';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { loadBase16Palette, setColor } from '../../modules/currentPalette';
+import { loadBase16Palette } from '../../modules/currentPalette';
 
 import InlineSwatch from '../../presentational/InlineSwatch';
 import GithubCorner from '../../presentational/GithubCorner';
@@ -48,29 +48,10 @@ const inlineSwatch = color => <InlineSwatch key={color} color={color} />;
 
 class Tutorial extends TutorialContainer {
   render() {
-    const {
-      base,
-      accents,
-      all,
-      palettes,
-      loadBase16Palette,
-      selectColor,
-      modifyCurrentColor,
-    } = this.props;
+    const { base, accents, all, palettes, loadBase16Palette } = this.props;
     if (!base) {
       return null;
     }
-
-    const extremal = [
-      '#000',
-      '#00F',
-      '#F00',
-      '#F0F',
-      '#0F0',
-      '#0FF',
-      '#FF0',
-      '#FFF',
-    ];
 
     const allInverted = [...[...base].reverse(), ...accents];
 
@@ -90,10 +71,6 @@ class Tutorial extends TutorialContainer {
       {}
     );
 
-    const colorPicked = index => color => {
-      this.props.setColor(index, color);
-    };
-
     return (
       <div className="Tutorial">
         <Favicon />
@@ -107,9 +84,9 @@ class Tutorial extends TutorialContainer {
             </p>
           </div>
           <Navigation />
+          <PageSchemesIntro />
+          <PageColorScheme />
         </Page>
-        <PageSchemesIntro />
-        <PageColorScheme />
         <Page inverse>
           <div className="Tutorial-text">
             <Header hash="modern-schemes">Современные схемы</Header>
@@ -421,7 +398,7 @@ const mapStateToProps = ({ currentPalette, paletteList }) => {
 };
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ loadBase16Palette, setColor }, dispatch);
+  bindActionCreators({ loadBase16Palette }, dispatch);
 
 export default connect(
   mapStateToProps,
