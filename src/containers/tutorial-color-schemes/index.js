@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 
 import { loadBase16Palette, setColor } from '../../modules/currentPalette';
 
-import InlineSwatch from '../../presentational/InlineSwatch';
+import InlineChip from '../../presentational/InlineChip';
 import GithubCorner from '../../presentational/GithubCorner';
 import Matrix from '../../presentational/Matrix';
 import ColorSpace from '../../presentational/ColorSpace';
@@ -44,7 +44,7 @@ Index: languages/ini.js
    },
 `;
 
-const inlineSwatch = color => <InlineSwatch key={color} color={color} />;
+const inlineChip = color => <InlineChip key={color} color={color} />;
 
 class Tutorial extends TutorialContainer {
   render() {
@@ -153,9 +153,9 @@ class Tutorial extends TutorialContainer {
             <ul>
               <li>
                 8 в основной последовательности,{' '}
-                <InlineSwatch color={background} />
+                <InlineChip color={background} />
                 первый из которых является основным цветом фона а{' '}
-                <InlineSwatch color={foreground} />
+                <InlineChip color={foreground} />
                 последний — основным цветом текста.
               </li>
               <li>
@@ -167,26 +167,26 @@ class Tutorial extends TutorialContainer {
           <div className="Tutorial-text">
             <Header hash="scheme-base">Восемь основных оттенков</Header>
             <p>
-              Основная последовательность {base.map(inlineSwatch)} состоит из
-              трёх групп.
+              Основная последовательность {base.map(inlineChip)} состоит из трёх
+              групп.
             </p>
             <p>
-              Фоны: <InlineSwatch color={base[0]} />
-              основной и <InlineSwatch color={base[1]} />
+              Фоны: <InlineChip color={base[0]} />
+              основной и <InlineChip color={base[1]} />
               альтернативный (например, для выделения текущей строки в
               редакторе).
             </p>
             <p>
-              Промежуточные цвета: <InlineSwatch color={base[2]} />
-              <InlineSwatch color={base[3]} />
-              <InlineSwatch color={base[4]} />
-              <InlineSwatch color={base[5]} />. Ими рисуют второстепенный текст
+              Промежуточные цвета: <InlineChip color={base[2]} />
+              <InlineChip color={base[3]} />
+              <InlineChip color={base[4]} />
+              <InlineChip color={base[5]} />. Ими рисуют второстепенный текст
               (номера строк, ключевые слова языка программирования), линейки и
               границы.
             </p>
             <p>
-              Цвета текста: <InlineSwatch color={base[6]} />
-              приглушённый и <InlineSwatch color={base[7]} />
+              Цвета текста: <InlineChip color={base[6]} />
+              приглушённый и <InlineChip color={base[7]} />
               основной.
             </p>
             <p>
@@ -225,8 +225,8 @@ class Tutorial extends TutorialContainer {
           <div className="Tutorial-text">
             <Header hash="accents">Акценты</Header>
             <p>
-              Акценты {accents.map(inlineSwatch)} не делятся на группы, каждый
-              из них должен заметно отличаться от всех остальных цветов в схеме.
+              Акценты {accents.map(inlineChip)} не делятся на группы, каждый из
+              них должен заметно отличаться от всех остальных цветов в схеме.
               Тем не менее, я делю цвета по «температуре», чтобы было легче
               ориентироваться.
             </p>
@@ -248,7 +248,7 @@ class Tutorial extends TutorialContainer {
               Если не учитывать яркость и насыщенность, можно изучить
               распределение акцентов по тонам. Если точки распределены
               неравномерно, на окружности будут видны пустые области — это те
-              тона, которые можно бы использовать для увеличения контрастности
+              тона, которые можно использовать для увеличения контрастности
               акцентов.
             </p>
           </div>
@@ -259,34 +259,31 @@ class Tutorial extends TutorialContainer {
             <Header hash="warm-colors">Тёплые цвета</Header>
             <p>
               Два цвета, которые используются часто и несут определённый смысл —{' '}
-              <InlineSwatch color={accents[0]} /> красный и{' '}
-              <InlineSwatch color={accents[3]} /> зелёный. Например, удалённые и
+              <InlineChip color={accents[0]} /> красный и{' '}
+              <InlineChip color={accents[3]} /> зелёный. Например, удалённые и
               добавленные строки при просмотре патчей:
             </p>
             <CodeExample colors={allInverted} language="diff">
               {diff}
             </CodeExample>
             <p>
-              Тёплые цвета часто используются в интерфейсах для обозначения
-              приоритетов, состояний (ошибка, предупреждение), разрешений.
-            </p>
-            <p>
-              <InlineSwatch color={accents[1]} /> Оранжевый и{' '}
-              <InlineSwatch color={accents[2]} /> жёлтый используются реже, но
-              важно, тем не менее, делать их различимыми.
+              Тёплые цвета, включая <InlineChip color={accents[1]} /> оранжевый
+              и <InlineChip color={accents[2]} /> жёлтый, часто используются в
+              интерфейсах для обозначения приоритетов, состояний (ошибка,
+              предупреждение), разрешений.
             </p>
             <Header hash="cold-colors">Холодные цвета</Header>
             <p>
               Холодными чаще всего будут три акцента, с четвёртого по седьмой:{' '}
-              <InlineSwatch color={accents[4]} />
-              <InlineSwatch color={accents[5]} />
-              <InlineSwatch color={accents[6]} />. Эта часть палитры часто
+              <InlineChip color={accents[4]} />
+              <InlineChip color={accents[5]} />
+              <InlineChip color={accents[6]} />. Эта часть палитры часто
               используется в средах разработки для выделения ключевых слов,
               строк, идентификаторов.
             </p>
             <Header hash="line-of-purple">Пурпурные цвета</Header>
             <p>
-              Восьмой цвет <InlineSwatch color={accents[7]} /> отличается от
+              Восьмой цвет <InlineChip color={accents[7]} /> отличается от
               остальных, он чаще всего попадает в т.н.{' '}
               <a href="https://en.wikipedia.org/wiki/Line_of_purples">
                 пурпурную линию
@@ -332,7 +329,7 @@ class Tutorial extends TutorialContainer {
             года.
           </p>
           <p>
-            Примеры результатов её использования:
+            Примеры результатов её применения:
             <br />
             <Delta c1="#FFF" c2="#00F" />
             <br />
@@ -346,25 +343,40 @@ class Tutorial extends TutorialContainer {
             <br />
           </p>
           <p>
-            Формулу можно применить и к таблице, чтобы численно оценить различие
-            между цветами фона и текста:
+            Формулу можно применить и к цветовой схеме, чтобы численно оценить
+            различие между цветами фона и текста:
           </p>
           <Matrix colors={base} fn={deltaE} />
           <p>
-            Различие между цветами меньше 5 говорит о том, что пару цветов можно
-            различить только поставив рядом две крупных прямоугольника, в других
-            ситуациях цвета различить проблематично:{' '}
-            <Delta c1="#000" c2="#000009" />. Различие порядка 15 уже можно
-            разглядеть: <Delta c1="#000" c2="#00052A" />. 30 единиц различия
-            дают ощутимо разные цвета: <Delta c1="#000" c2="#00398C" />. 50
-            единиц — достаточная контрастность для использования пары цветов для
-            текста и фона: <Delta c1="#000" c2="#0070FF" />.
+            Различие между цветами меньше <strong>5</strong> говорит о том, что
+            пару цветов можно различить только поставив рядом две крупных
+            прямоугольника, в других ситуациях цвета различить проблематично:{' '}
+            <Delta c1="#000" c2="#000009" />.
+          </p>
+          <p>
+            Различие порядка <strong>15</strong> уже можно разглядеть:{' '}
+            <Delta c1="#000" c2="#00052A" />.
+          </p>
+          <p>
+            <strong>30</strong> единиц различия дают ощутимо разные цвета:{' '}
+            <Delta c1="#000" c2="#00498C" />.
+          </p>
+          <p>
+            <strong>50</strong> единиц — достаточная контрастность для
+            использования пары цветов для текста и фона:{' '}
+            <Delta c1="#000" c2="#0088FF" />.
           </p>
           <p>
             Теперь посмотрим на полную таблицу различий цветов текущей цветовой
             схемы:
           </p>
           <Matrix colors={all} fn={deltaE} />
+          <p>
+            Дельта-е между разными акцентными цветами и цветами основной
+            последовательности отличается, но в хорошей цветовой схеме цвета
+            фона и текста контрастны (ΔE > 30) относительно всех акцентных
+            цветов.
+          </p>
         </div>
         <div className="Tutorial-page">
           <div className="Tutorial-text">

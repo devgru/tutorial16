@@ -2,10 +2,6 @@
   padding: 2em 0;
 }
 
-.Tutorial-page_narrow {
-  height: 10vh;
-}
-
 .Tutorial-page_inverse {
   background: var(--color7);
   color: var(--color0);
@@ -22,18 +18,16 @@
 
 .Tutorial-page_inverse_open {
   width: 100vw;
-  height: 10vh;
   padding: 0;
   border-style: solid;
-  border-width: 5vh 50vw;
+  border-width: 30px 50vw;
   border-color: transparent var(--color7) var(--color7) transparent;
 }
 
 .Tutorial-page_inverse_close {
   width: 100vw;
-  height: 10vh;
   padding: 0;
   border-style: solid;
-  border-width: 5vh 50vw;
+  border-width: 30px 50vw;
   border-color: var(--color7) var(--color7) transparent transparent;
 }

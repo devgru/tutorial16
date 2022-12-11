@@ -1,15 +1,15 @@
 {
   "name": "tutorial16",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
-  "author": "Dmitriy Semyushkin <git@devg.ru> (https://devg.ru)",
+  "author": "Dima Devgru <git@devg.ru> (https://devg.ru)",
   "license": "MIT",
   "devDependencies": {
     "cross-env": "^5.1.1",
     "gh-pages": "^1.1.0",
     "minimist": "^1.2.0",
     "node-fetch": "^2.0.0",
-    "react-scripts": "^1.0.14"
+    "react-scripts": "4"
   },
   "dependencies": {
     "closest-color": "^1.2.1",
@@ -76,5 +76,17 @@
       "pre-push": "yarn deploy"
     }
   },
-  "homepage": "http://devgru.github.io/tutorial16"
+  "homepage": "http://devgru.github.io/tutorial16",
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }

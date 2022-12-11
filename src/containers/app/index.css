@@ -10,3 +10,7 @@ html {
 a {
   color: var(--color7);
 }
+
+.Header a.Header-hash {
+  color: var(--color6);
+}

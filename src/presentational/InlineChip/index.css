@@ -1,4 +1,4 @@
-.InlineSwatch {
+.InlineChip {
   display: inline-block;
   position: relative;
   width: 0.75em;
@@ -9,7 +9,7 @@
   outline: none;
 }
 
-.InlineSwatch-hover {
+.InlineChip-hover {
   display: none;
   position: absolute;
   z-index: 1;
@@ -17,11 +17,11 @@
   top: 1em;
 }
 
-.InlineSwatch:hover .InlineSwatch-hover,
-.InlineSwatch:focus .InlineSwatch-hover {
+.InlineChip:hover .InlineChip-hover,
+.InlineChip:focus .InlineChip-hover {
   display: block;
 }
 
-.InlineSwatch .Swatch {
+.InlineChip .Chip {
   user-select: none;
 }

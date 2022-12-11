@@ -1,12 +1,12 @@
-.Swatch {
+.Chip {
   display: inline-block;
   width: 12em;
   min-height: 8.5em;
   margin: 0.25em;
-  padding: 0.5em;
+  padding: 4em 0.5em 0.5em;
   vertical-align: top;
 }
 
-.SwatchProperties {
+.ChipProperties {
   display: block;
 }

@@ -1,8 +1,6 @@
 import React from 'react';
 
-const cubeSpace = 4;
-const cubeRatio = 2;
-const pointSize = cubeSpace / cubeRatio;
+const pointSize = 1.5;
 
 const projectToPlane = (point, plane) => {
   const { centroid, normal } = plane;

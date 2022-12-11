@@ -9,44 +9,8 @@
   color: var(--color7);
 }
 
-.Tutorial-page {
-  padding: 2em 0;
-}
-
-.Tutorial-page_narrow {
-  height: 10vh;
-}
-
-.Tutorial-page_inverse {
-  background: var(--color7);
-  color: var(--color0);
-}
-
-.Tutorial-page_inverse a {
-  color: var(--color0);
-}
-
-.Tutorial-page_inverse ::selection {
-  background: var(--color6);
-  color: var(--color0);
-}
-
-.Tutorial-page_inverse_open {
-  width: 100vw;
-  height: 10vh;
-  padding: 0;
-  border-style: solid;
-  border-width: 5vh 50vw;
-  border-color: transparent var(--color7) var(--color7) transparent;
-}
-
-.Tutorial-page_inverse_close {
-  width: 100vw;
-  height: 10vh;
-  padding: 0;
-  border-style: solid;
-  border-width: 5vh 50vw;
-  border-color: var(--color7) var(--color7) transparent transparent;
+.Tutorial-page_inverse .Header a.Header-hash {
+  color: var(--color1);
 }
 
 .Tutorial-text {
@@ -64,14 +28,10 @@
   overflow: hidden;
 }
 
-.Tutorial-swatch {
+.Tutorial-chip {
   display: inline-block;
   width: 6vw;
   height: 6vw;
-}
-
-.Tutorial-page h1 {
-  margin: 1em 0 0.25em;
 }
 
 .Tutorial-page p {
@@ -85,11 +45,4 @@
 
 .Tutorial-page .ColorSpace {
   float: left;
-}
-
-.Tutorial-aside {
-  display: block;
-  margin-left: 600px;
-  margin-bottom: 0.5em;
-  max-width: 15em;
 }

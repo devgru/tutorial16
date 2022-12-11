@@ -8,7 +8,7 @@ import registerServiceWorker from './registerServiceWorker';
 
 import 'sanitize.css/sanitize.css';
 import './index.css';
-
+window.__REACT_DEVTOOLS_GLOBAL_HOOK__ = {};
 const target = document.querySelector('#root');
 
 render(

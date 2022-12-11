@@ -10,7 +10,7 @@ import { interpolateHcl } from 'd3-interpolate';
 import { loadBase16Palette, setColor } from '../../modules/currentPalette';
 import generateAccents from '../../utils/generateAccents';
 
-import Swatch from '../../presentational/Swatch';
+import Chip from '../../presentational/Chip';
 import GithubCorner from '../../presentational/GithubCorner';
 import Header from '../../presentational/Header';
 import Page from '../../presentational/Page';
@@ -21,6 +21,7 @@ import Matrix from '../../presentational/Matrix';
 
 import '../tutorial/index.css';
 import delta from '../../utils/delta';
+import Navigation from '../../presentational/Navigation';
 
 const deltaE = (fg, bg) => Math.round(delta(fg, bg));
 
@@ -110,7 +111,7 @@ class TutorialCreateScheme extends TutorialContainer {
       const color = currentPalette.slots[indices[0]].colors[indices[1]];
       return (
         <div>
-          <Swatch color={color} onClick={editColor(indices)} />
+          <Chip color={color} onClick={editColor(indices)} />
           {isEqual(indices, this.state.currentColor) && (
             <Picker
               color={color}
@@ -126,6 +127,12 @@ class TutorialCreateScheme extends TutorialContainer {
     return (
       <div className="Tutorial">
         <GithubCorner />
+        <Page>
+          <div className="Tutorial-text">
+            <h1>Создание цветовой схемы</h1>
+          </div>
+          <Navigation />
+        </Page>
         <Page>
           <div className="Tutorial-text">
             <Header hash="start">Выбор основы</Header>
@@ -160,7 +167,7 @@ class TutorialCreateScheme extends TutorialContainer {
             {colorPicker([1, 3])}
             <p>Давайте посмотрим на промежуточные цвета.</p>
             {interpolatedBase.map(c => (
-              <Swatch key={c} color={c} />
+              <Chip key={c} color={c} />
             ))}
             <ColorSpace
               width={600}
@@ -173,7 +180,7 @@ class TutorialCreateScheme extends TutorialContainer {
             <br />
             <p>И на акценты</p>
             {suggestedAccents.map(c => (
-              <Swatch key={c} color={c} />
+              <Chip key={c} color={c} />
             ))}
             <ColorSpace
               width={600}

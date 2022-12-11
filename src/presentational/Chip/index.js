@@ -13,7 +13,7 @@ const descriptor = new ColorDescriptor('ru');
 
 const noop = () => {};
 
-const Swatch = ({ color, onClick = noop }, { base }) => {
+const Chip = ({ color, onClick = noop }, { base }) => {
   const textColors = [base[0], base[base.length - 1]];
   const textColor = farthestOf(color, textColors);
   const rgbColor = rgb(color);
@@ -28,27 +28,27 @@ const Swatch = ({ color, onClick = noop }, { base }) => {
   return (
     <span
       onClick={onClick}
-      className="Swatch"
+      className="Chip"
       style={{
         background: color,
         color: textColor,
       }}
     >
-      <span className="SwatchProperties">{name}</span>
-      <span className="SwatchProperties">{description}</span>
-      <span className="SwatchProperties">{rgbColor.hex().toUpperCase()}</span>
-      <span className="SwatchProperties">
+      <span className="ChipProperties">{name}</span>
+      <span className="ChipProperties">{description}</span>
+      <span className="ChipProperties">{rgbColor.hex().toUpperCase()}</span>
+      <span className="ChipProperties">
         R: {Math.round(r)}, G: {Math.round(g)}, B: {Math.round(b)}
       </span>
-      <span className="SwatchProperties">
+      <span className="ChipProperties">
         H: {h}, C: {c}, L: {l}
       </span>
     </span>
   );
 };
 
-Swatch.contextTypes = {
+Chip.contextTypes = {
   base: PropTypes.arrayOf(PropTypes.string),
 };
 
-export default Swatch;
+export default Chip;

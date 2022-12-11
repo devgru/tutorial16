@@ -1,3 +1,6 @@
 .Delta {
   white-space: nowrap;
 }
+.Delta .Chip {
+  white-space: initial;
+}

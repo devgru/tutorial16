@@ -20,7 +20,8 @@ class ColorSpace extends Component {
   constructor(props, context) {
     super(props, context);
 
-    this.cameraPosition = new THREE.Vector3(0, 0, 500);
+    const cameraPositionZ = props.cameraPositionZ || 400;
+    this.cameraPosition = new THREE.Vector3(0, 0, cameraPositionZ);
 
     const colorToPoint = props.colorToPoint || colorToLabPoint;
     const gridOpacity = props.gridOpacity || 0.1;
@@ -141,7 +142,7 @@ class ColorSpace extends Component {
 
     const onVisibilityChange = isVisible => {
       this.isVisible = isVisible;
-      this.animationStep();
+      isVisible && this.animationStep();
     };
 
     const react3 = (

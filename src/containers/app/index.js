@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import Tutorial from '../tutorial';
-import TutorialMath from '../tutorial-math';
 import TutorialColorSpaces from '../tutorial-color-spaces';
 import TutorialColorSchemes from '../tutorial-color-schemes';
 import TutorialCreateScheme from '../tutorial-create-scheme';
@@ -15,7 +14,6 @@ class App extends Component {
     return (
       <div className="App">
         <Route exact={true} path="/" component={Tutorial} />
-        <Route exact={true} path="/math" component={TutorialMath} />
         <Route
           exact={true}
           path="/color-spaces"

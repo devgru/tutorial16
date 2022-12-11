@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { hcl, rgb } from 'd3-color';
 import rgbCached from '../../utils/rgb';
-import Swatch from '../Swatch';
+import Chip from '../Chip';
 import { range } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
 
@@ -237,7 +237,7 @@ class Picker extends Component {
           />
         </div>
         <div className="Picker-right">
-          <Swatch color={color} onClick={onClose} />
+          <Chip color={color} onClick={onClose} />
         </div>
         <div className="Picker-left">
           <div className="Picker-right">
